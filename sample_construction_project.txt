@@ -1,0 +1,51 @@
+## Sample Construction Project Scope
+
+**Project:** Steel Beam Installation Phase 2
+
+**Client Name:** Acme Construction Ltd
+
+**Site Address:** 45 Victoria Street, Manchester  
+**Postcode:** M1 4BT
+
+**Main Contractor:** BuildRight Contractors
+
+**Reference Number:** JOB-2024-0156
+
+**Start Date:** 15/01/2025  
+**End Date:** 25/01/2025
+
+---
+
+### Scope of Works
+
+Installation of structural steel beams on the 3rd and 4th floors of the commercial office building. This project involves:
+
+**Phase 1 - Preparation:**
+- Establish site exclusion zones
+- Set up mobile elevated work platforms (MEWP)
+- Secure all loose materials and conduct site safety briefing
+
+**Phase 2 - Main Works:**
+- Lift and position steel I-beams using 20-ton mobile crane
+- Perform hot works for welding beam connections as per structural drawings
+- Install M20 bolted connections where specified
+- Apply fire protection coating to exposed steelwork
+
+**Phase 3 - Quality Assurance:**
+- Visual inspect all welds for defects
+- Conduct torque verification on all bolted joints
+- Perform dimensional checks against architectural drawings
+- Document all work with photographic evidence
+
+**Safety Requirements:**
+- Full PPE mandatory at all times
+- Hot works permit required daily
+- Fire extinguisher and fire watch on site during welding
+- Competent Person (CP) supervision throughout
+- Method statements and risk assessments in place
+
+**Estimated Duration:** 10 working days  
+**Team Size:** 4 steel erectors + 1 crane operator + 1 CP supervisor
+
+**Client Contact:** John Smith, Project Manager  
+**Email:** john.smith@acmeconstruction.co.uk

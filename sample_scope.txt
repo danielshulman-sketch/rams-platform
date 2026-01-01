@@ -1,0 +1,41 @@
+## Sample Scope of Works Document
+
+### Project: Steel Beam Installation
+
+**Client:** ABC Construction Ltd  
+**Location:** 123 High Street, London
+
+---
+
+### Work Description
+
+Installation of structural steel beams on the 3rd floor of the commercial building. The work will involve:
+
+1. **Site Preparation**
+   - Establish exclusion zones
+   - Set up MEWP access equipment
+   - Secure all loose materials
+
+2. **Main Activities**
+   - Lift steel beams using approved crane
+   - Position beams as per structural drawings
+   - Perform hot works for welding connections
+   - Install bolted connections where specified
+
+3. **Safety Measures**
+   - All personnel to wear full PPE
+   - Hot works permit required
+   - Fire extinguisher on site
+   - Competent person supervision
+
+4. **Quality Control**
+   - Visual inspection of all welds
+   - Torque verification on bolted joints
+   - Dimensional checks against drawings
+
+**Estimated Duration:** 5 working days  
+**Personnel Required:** 4 steel erectors + crane operator
+
+---
+
+End of scope document.

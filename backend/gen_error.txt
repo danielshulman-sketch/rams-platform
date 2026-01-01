@@ -1,0 +1,23 @@
+Environment variables loaded from .env
+Prisma schema loaded from prisma\schema.prisma
+Error: Prisma schema validation - (get-dmmf wasm)
+Error code: P1012
+[1;91merror[0m: [1mError validating field `settings` in model `Organization`: Field `settings` in model `Organization` can't be of type Json. The current connector does not support the Json type.[0m
+  [1;94m-->[0m  [4mprisma\schema.prisma:13[0m
+[1;94m   | [0m
+[1;94m12 | [0m  name      String
+[1;94m13 | [0m  [1;91msettings  Json?[0m
+[1;94m14 | [0m  
+[1;94m   | [0m
+[1;91merror[0m: [1mError validating field `permissions` in model `Role`: Field `permissions` in model `Role` can't be of type Json. The current connector does not support the Json type.[0m
+  [1;94m-->[0m  [4mprisma\schema.prisma:41[0m
+[1;94m   | [0m
+[1;94m40 | [0m  name           String
+[1;94m41 | [0m  [1;91mpermissions    Json[0m
+[1;94m42 | [0m  
+[1;94m   | [0m
+
+Validation Error Count: 2
+[Context: getDmmf]
+
+Prisma CLI Version : 5.22.0
