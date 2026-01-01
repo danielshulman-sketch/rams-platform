@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { Suspense, useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { useQuery } from '@tanstack/react-query';
@@ -20,7 +20,7 @@ type Hazard = {
     residualRisk: number;
 };
 
-export default function NewRamsPage() {
+function NewRamsClient() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const jobId = searchParams.get('jobId');
@@ -647,5 +647,13 @@ export default function NewRamsPage() {
                 </Card>
             )}
         </div>
+    );
+}
+
+export default function NewRamsPage() {
+    return (
+        <Suspense fallback={<div className="max-w-4xl mx-auto space-y-6">Loading...</div>}>
+            <NewRamsClient />
+        </Suspense>
     );
 }
