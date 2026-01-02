@@ -14,6 +14,8 @@ import { KnowledgeBaseModule } from './knowledge-base/knowledge-base.module';
 import { AiModule } from './ai/ai.module';
 import { StorageModule } from './storage/storage.module';
 
+import { HealthController } from './health.controller';
+
 @Module({
     imports: [
         ConfigModule.forRoot({
@@ -33,5 +35,7 @@ import { StorageModule } from './storage/storage.module';
         AiModule,
         StorageModule,
     ],
+    controllers: [HealthController],
+    providers: [],
 })
 export class AppModule { }

@@ -113,28 +113,51 @@ OUTPUT FORMAT (JSON):
   "residualRisk": "Low"
 }
 
-Ensure the content is professional, legally compliant (HSE UK standards), and fully addresses the scope provided.`;
+Ensure the content is professional, legally compliant (HSE UK standards), and fully addresses the scope provided. You MUST return a VALID JSON object. Do not wrap in markdown code blocks.`;
+
+        const messages: any[] = [
+            {
+                role: 'system',
+                content: 'You are a UK health and safety expert specializing in construction RAMS documents. Provide detailed, practical, and legally compliant safety guidance. You MUST return raw JSON.',
+            },
+            {
+                role: 'user',
+                content: prompt,
+            },
+        ];
 
         try {
             const response = await this.openai.chat.completions.create({
                 model: 'gpt-4o',
-                messages: [
-                    {
-                        role: 'system',
-                        content: 'You are a UK health and safety expert specializing in construction RAMS documents. Provide detailed, practical, and legally compliant safety guidance.',
-                    },
-                    {
-                        role: 'user',
-                        content: prompt,
-                    },
-                ],
+                messages: messages,
                 temperature: 0.7,
                 response_format: { type: 'json_object' },
             });
 
             const generatedContent = response.choices[0].message.content;
-            return JSON.parse(generatedContent);
-        } catch (error) {
+            return JSON.parse(generatedContent || '{}');
+        } catch (error: any) {
+            // Check for specific OpenAI error regarding response_format
+            if (error?.status === 400 && error?.error?.message?.includes('response_format')) {
+                console.warn('OpenAI: JSON mode not supported for this model/configuration. Retrying without response_format...');
+                try {
+                    const response = await this.openai.chat.completions.create({
+                        model: 'gpt-4o',
+                        messages: messages,
+                        temperature: 0.7,
+                        // Retry without response_format
+                    });
+
+                    let generatedContent = response.choices[0].message.content || '{}';
+                    // Strip markdown code blocks if present
+                    generatedContent = generatedContent.replace(/```json\n?|\n?```/g, '').trim();
+                    return JSON.parse(generatedContent);
+                } catch (retryError) {
+                    console.error('AI generation fallback error:', retryError);
+                    throw new Error(`Failed to generate RAMS with AI (Fallback): ${retryError.message}`);
+                }
+            }
+
             console.error('AI generation error:', error);
             throw new Error(`Failed to generate RAMS with AI: ${error.message}`);
         }
@@ -155,18 +178,52 @@ Return a JSON object with:
   "identifiedHazards": ["Potential hazards mentioned or implied"],
   "duration": "Expected duration of work",
   "accessRequirements": "Any special access needed"
-}`;
+}
+
+You MUST return a VALID JSON object. Do not wrap in markdown code blocks.`;
+
+        const messages: any[] = [{ role: 'user', content: prompt }];
 
         try {
             const response = await this.openai.chat.completions.create({
                 model: 'gpt-4o',
-                messages: [{ role: 'user', content: prompt }],
+                messages: messages,
                 temperature: 0.5,
                 response_format: { type: 'json_object' },
             });
 
-            return JSON.parse(response.choices[0].message.content);
-        } catch (error) {
+            return JSON.parse(response.choices[0].message.content || '{}');
+        } catch (error: any) {
+            // Check for specific OpenAI error regarding response_format
+            if (error?.status === 400 && error?.error?.message?.includes('response_format')) {
+                console.warn('OpenAI: JSON mode not supported for this model/configuration. Retrying without response_format...');
+                try {
+                    const response = await this.openai.chat.completions.create({
+                        model: 'gpt-4o',
+                        messages: messages,
+                        temperature: 0.5,
+                        // Retry without response_format
+                    });
+
+                    let generatedContent = response.choices[0].message.content || '{}';
+                    // Strip markdown code blocks if present
+                    generatedContent = generatedContent.replace(/```json\n?|\n?```/g, '').trim();
+                    return JSON.parse(generatedContent);
+                } catch (retryError) {
+                    console.error('Scope extraction fallback error:', retryError);
+                    // Return empty structure on failure for this method as it's less critical/handled gracefully upstream
+                    return {
+                        workDescription: 'Unable to extract (AI Error)',
+                        location: '',
+                        equipment: [],
+                        materials: [],
+                        identifiedHazards: [],
+                        duration: '',
+                        accessRequirements: '',
+                    };
+                }
+            }
+
             console.error('Scope extraction error:', error);
             return {
                 workDescription: 'Unable to extract',
