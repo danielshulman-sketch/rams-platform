@@ -3,7 +3,7 @@ import { ValidationPipe } from '@nestjs/common';
 import { AppModule } from '../src/app.module'; // Adjust path if necessary
 import { HttpExceptionFilter } from '../src/http-exception.filter';
 import { ExpressAdapter } from '@nestjs/platform-express';
-import * as express from 'express';
+import express from 'express';
 
 const server = express();
 
